@@ -105,7 +105,7 @@ function compareValues(key, order = "ascending") {
 
 function slide(ary,num) {
     // ary = ary.reverse()
-    return ary.slice(ary.length-num,ary.length).sort(compareValues("id","descending"))
+    return ary.slice(ary.length-num,ary.length).sort(compareValues("date","descending"))
 }
 
 
