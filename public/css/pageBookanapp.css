@@ -591,65 +591,65 @@ body{
 .slide3_5-item p{
     font-size: 20px;
 }
-.header-shop-container {
-    float: left;
-    width: 100%;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #e4e4eb;
-}
+/*.header-shop-container {*/
+/*    float: left;*/
+/*    width: 100%;*/
+/*    background-color: #f9f9f9;*/
+/*    border-bottom: 1px solid #e4e4eb;*/
+/*}*/
 
-.shop-row {
-    float: left;
-    margin: 0 15px;
-    text-align: left;
-    padding: 25px 0;
-    width: 100%;
-    line-height: 1.5;
-}
+/*.shop-row {*/
+/*    float: left;*/
+/*    margin: 0 15px;*/
+/*    text-align: left;*/
+/*    padding: 25px 0;*/
+/*    width: 100%;*/
+/*    line-height: 1.5;*/
+/*}*/
 
-.shop-left {
-    float: left;
-    padding: 0 15px;
-    width: 50%;
-}
+/*.shop-left {*/
+/*    float: left;*/
+/*    padding: 0 15px;*/
+/*    width: 50%;*/
+/*}*/
 
-.shop-left h1 {
-    font-family: 'Kalam', cursive;
-    text-align: left;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: bold;
-    width: 100%;
-    margin-bottom: 0;
-    margin-top: 10px;
-}
+/*.shop-left h1 {*/
+/*    font-family: 'Kalam', cursive;*/
+/*    text-align: left;*/
+/*    text-transform: uppercase;*/
+/*    font-size: 20px;*/
+/*    font-weight: bold;*/
+/*    width: 100%;*/
+/*    margin-bottom: 0;*/
+/*    margin-top: 10px;*/
+/*}*/
 
-.shop-right {
-    float: right;
-    padding: 8px 15px;
-    width: 50%;
-    text-align: right;
+/*.shop-right {*/
+/*    float: right;*/
+/*    padding: 8px 15px;*/
+/*    width: 50%;*/
+/*    text-align: right;*/
 
-}
+/*}*/
 
-.shop-right ul {
-    float: right;
-    text-align: right;
-    list-style: none;
-}
+/*.shop-right ul {*/
+/*    float: right;*/
+/*    text-align: right;*/
+/*    list-style: none;*/
+/*}*/
 
-.shop-right li {
-    float: left;
-    padding-right: 5px;
-}
+/*.shop-right li {*/
+/*    float: left;*/
+/*    padding-right: 5px;*/
+/*}*/
 
-.shop-right li a {
-    text-decoration: none;
-    color: #252525;
-    font-weight: bold;
+/*.shop-right li a {*/
+/*    text-decoration: none;*/
+/*    color: #252525;*/
+/*    font-weight: bold;*/
 
-}
+/*}*/
 
-.shop-clear {
-    clear: both;
-}
+/*.shop-clear {*/
+/*    clear: both;*/
+/*}*/

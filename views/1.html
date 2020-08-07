@@ -27,3 +27,16 @@
 <%- include('footer.ejs); %>
 </body>
 </html>
+
+
+
+<% for(var i=article.length-1; i > article.length-3-1; i--) { %>
+<div class="siderba3_content">
+    <img src="<%= i.thumbnail %>">
+    <a href="/blog/<%= i.id %>"><%= i.title %></a><br/>
+    <span><%= i.date %></span>
+    <div class="flex">
+        <a href="/blog/<%= i.id %>"><i class="fas fa-plus"></i></a>
+    </div>
+</div>
+<% } %>
