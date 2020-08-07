@@ -86,7 +86,7 @@ app.get("/blog/:id",function (req,res) {
     }
 });
 
-function compareValues(key, order = 'tang_dan') {
+function compareValues(key, order = "ascending") {
     return function innerSort(a, b) {
         const obj_to_compare_A = a[key];
         const obj_to_compare_B = b[key];
@@ -98,14 +98,14 @@ function compareValues(key, order = 'tang_dan') {
             comparison = -1;
         }
         return (
-            (order === 'giam_dan') ? (comparison * -1) : comparison
+            (order === "descending") ? (comparison * -1) : comparison
         );
     };
 }
 
 function slide(ary,num) {
     // ary = ary.reverse()
-    return ary.slice(ary.length-num,ary.length).sort(compareValues('id','giam_dan'))
+    return ary.slice(ary.length-num,ary.length).sort(compareValues("id","descending"))
 }
 
 
