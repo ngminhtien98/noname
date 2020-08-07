@@ -78,6 +78,7 @@ body{
 }
 /**/
 .navbarbar {
+    float: right;
     overflow: hidden;
     background-color: #f7f7f7;
 }

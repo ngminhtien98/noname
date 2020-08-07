@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title> <%= title %> </title>
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
-    <script type="text/javascript" src="/jQuery/jQuery_v3.5.1.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <%- include('headerBasicCss.ejs'); %>
+    <%- include('headerFontsAwsome.ejs'); %>
+    <%- include('headerGoogleFont.ejs'); %>
 </head>
 <body>
-<%- include('header.ejs'); %>
-<%- include('footer.ejs'); %>
+<%- include('bodyHeader.ejs'); %>
+<%- include('bodyFooter.ejs'); %>
 </body>
 </html>
