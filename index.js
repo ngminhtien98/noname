@@ -69,6 +69,7 @@ app.get("/blog",function (req,res) {
     let title = "Blog";
     res.render("pageBlog",
         {
+            article: article,
             title: title,
             tagDict: tagDict,
             articleRecentPost:articleRecentPost

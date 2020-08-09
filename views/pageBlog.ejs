@@ -3,13 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title> <%= title %> </title>
-    <%- include('headerBasicCss.ejs'); %>
-    <%- include('headerFontsAwsome.ejs'); %>
-    <%- include('headerGoogleFont.ejs'); %>
+    <%- include('header/headerBasicCss.ejs'); %>
+    <%- include('header/headerFontsAwsome.ejs'); %>
+    <%- include('header/headerGoogleFont.ejs'); %>
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 </head>
 <body>
 <%- include('bodyHeaderFooter/bodyHeader.ejs'); %>
 <%- include('bodyHeaderFooter/bodyHeaderUnder.ejs'); %>
+    <div class="container articleContainer">
+        <div class="row">
+            <div class="blog_heading">All Blog Posts</div>
+            <hr/>
+            <div class="articleArea">
+                <% article.map(function (e) { %>
+                    <div class="article">
+                        <div class="articleThumb">
+                            <img src="<%= e.thumbnail %>">
+                        </div>
+                        <div class="articleShortContent">
+                            <a href="/blog/<%= e.id%>"><i class="far fa-bookmark bookmark icon"></i><span class="articleTitle"><%= e.title %></span></a>
+                            <div class="articleInfo">
+                                <a href="/archive/<%= e.date %>"><i class="far fa-calendar-alt icon"></i><span class="date"><%= e.date %></span></a>
+                                <i class="fas fa-tag icon"></i>
+                                <% e.tag.map(function(x) { %>
+                                    <a href="/archive/<%= x%>"><span class="tag"><%= x + ", " %></span></a>
+                                <% }) %>
+                            </div>
+                            <div class="shortContent"><%= e.content.split(". ",2) %></div>
+                            <a href="/blog/<%= e.id%>"><button type="button" class="btnContinue">Continue Reading <i class="fas fa-long-arrow-alt-right"></i></button>
+                            </a>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
 <%- include('bodyHeaderFooter/bodyFooter.ejs'); %>
 </body>
 </html>
