@@ -97,15 +97,15 @@ app.get("/blog/:id",function (req,res) {
     }
 });
 
-app.get("/archive",function (req,res) {
-    let title = "Archive";
-    res.render("pageArchive",
-        {
-            title: title,
-            tagDict: tagDict,
-            articleRecentPost:articleRecentPost
-        });
-});
+// app.get("/archive",function (req,res) {
+//     let title = "Archive";
+//     res.render("pageArchive",
+//         {
+//             title: title,
+//             tagDict: tagDict,
+//             articleRecentPost:articleRecentPost
+//         });
+// });
 
 app.get("/archive/:tag",function (req,res) {
     let TAG = req.params.tag;
