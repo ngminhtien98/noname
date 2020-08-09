@@ -5,7 +5,7 @@ app.use(express.static("public"));
 app.set("view engine","ejs");
 app.listen(PORT, function () {
     console.log("Server is running...");
-})
+});
 const fs = require("fs");
 var article = fs.readFileSync("data/data-article.json","UTF-8");
 article = JSON.parse(article);
@@ -22,7 +22,7 @@ article.map(function (a) {
 
     })
 })
-tagDict = sort_object(tagDict)
+tagDict = sort_object(tagDict);
 
 app.get("/",function (req,res) {
     let title = "Home";
@@ -35,7 +35,7 @@ app.get("/",function (req,res) {
 });
 
 app.get("/booking",function (req,res) {
-    let title = "Book An Appoinment";
+    let title = "Book An Appointment";
     res.render("pageBooking",
         {
             title: title,
@@ -45,10 +45,19 @@ app.get("/booking",function (req,res) {
         });
 });
 
-
 app.get("/shopping",function (req,res) {
     let title = "Shopping";
     res.render("pageShop",
+        {
+            title: title,
+            tagDict: tagDict,
+            articleRecentPost:articleRecentPost
+        });
+});
+
+app.get("/contact",function (req,res) {
+    let title = "Contact Us";
+    res.render("pageContact",
         {
             title: title,
             tagDict: tagDict,
@@ -64,16 +73,6 @@ app.get("/blog",function (req,res) {
             tagDict: tagDict,
             articleRecentPost:articleRecentPost
 
-        });
-});
-
-app.get("/contact",function (req,res) {
-    let title = "Contact Us";
-    res.render("pageContact",
-        {
-            title: title,
-            tagDict: tagDict,
-            articleRecentPost:articleRecentPost
         });
 });
 
@@ -97,15 +96,15 @@ app.get("/blog/:id",function (req,res) {
     }
 });
 
-// app.get("/archive",function (req,res) {
-//     let title = "Archive";
-//     res.render("pageArchive",
-//         {
-//             title: title,
-//             tagDict: tagDict,
-//             articleRecentPost:articleRecentPost
-//         });
-// });
+app.get("/archive",function (req,res) {
+    let title = "Archive";
+    res.render("pageArchive",
+        {
+            title: title,
+            tagDict: tagDict,
+            articleRecentPost:articleRecentPost
+        });
+});
 
 app.get("/archive/:tag",function (req,res) {
     let TAG = req.params.tag;
@@ -115,8 +114,7 @@ app.get("/archive/:tag",function (req,res) {
         e.tag.map (function (tag) {
             if(tag === TAG) {
                 res.render("pageArchive", {
-                    title: e.title,
-                    cat: e,
+                    title:" tag #" +tag,
                     tagDict: tagDict,
                     article:articleRecentPost
                 });
@@ -127,8 +125,7 @@ app.get("/archive/:tag",function (req,res) {
     if(count >= article.length){
         res.send("Not found")
     }
-})
-
+});
 
 function compareValues(key, order = "ascending") {
     return function innerSort(a, b) {

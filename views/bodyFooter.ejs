@@ -54,7 +54,7 @@
             <% }) %>
         </div>
         <div class="siderba4">
-            <h2>Tags</h2>
+            <h2>Tags (<%= tagDict.size %>) </h2>
             <% tagDict.forEach(function (value, key, map) { %>
                 <div class="siderba4_box">
                     <a href="/archive/<%=key%>"><button><%= key + " (" + value + ")" %></button></a>
