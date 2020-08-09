@@ -9,25 +9,38 @@ app.listen(PORT, function () {
 const fs = require("fs");
 var article = fs.readFileSync("data/data-article.json","UTF-8");
 article = JSON.parse(article);
+articleRecentPost = slide(article,3);
 
+var tagDict = new Map();
+article.map(function (a) {
+    a.tag.map(function (tag) {
+        if(tagDict.has(tag)){
+            tagDict.set(tag, tagDict.get(tag) + 1);
+        } else {
+            tagDict.set(tag, 1);
+        }
+
+    })
+})
+tagDict = sort_object(tagDict)
 
 app.get("/",function (req,res) {
     let title = "Home";
-    article = slide(article,3);
     res.render("home",
         {
             title: title,
-            article:article
+            tagDict: tagDict,
+            articleRecentPost:articleRecentPost
         });
 });
 
 app.get("/booking",function (req,res) {
     let title = "Book An Appoinment";
-    article = slide(article,3);
     res.render("pageBooking",
         {
             title: title,
-            article:article
+            tagDict: tagDict,
+            articleRecentPost:articleRecentPost
 
         });
 });
@@ -35,40 +48,37 @@ app.get("/booking",function (req,res) {
 
 app.get("/shopping",function (req,res) {
     let title = "Shopping";
-    article = slide(article,3);
     res.render("pageShop",
         {
             title: title,
-            article:article
+            tagDict: tagDict,
+            articleRecentPost:articleRecentPost
         });
 });
 
 app.get("/blog",function (req,res) {
     let title = "Blog";
-    article = slide(article,3);
     res.render("pageBlog",
         {
             title: title,
-            article:article
+            tagDict: tagDict,
+            articleRecentPost:articleRecentPost
 
         });
 });
 
 app.get("/contact",function (req,res) {
     let title = "Contact Us";
-    article = slide(article,3);
     res.render("pageContact",
         {
             title: title,
-            article:article
+            tagDict: tagDict,
+            articleRecentPost:articleRecentPost
         });
 });
 
 app.get("/blog/:id",function (req,res) {
     let ID = req.params.id;
-    let article = fs.readFileSync("data/data-article.json","UTF-8");
-    article = JSON.parse(article);
-    articleNew = slide(article,3);
     let count = 0;
     article.map(function (e) {
         count++;
@@ -76,7 +86,8 @@ app.get("/blog/:id",function (req,res) {
             res.render("pageArticle", {
                 title: e.title,
                 cat: e,
-                article:articleNew
+                tagDict: tagDict,
+                article:articleRecentPost
             });
             count = 0;
         }
@@ -85,6 +96,39 @@ app.get("/blog/:id",function (req,res) {
         res.send("Not found")
     }
 });
+
+app.get("/archive",function (req,res) {
+    let title = "Archive";
+    res.render("pageArchive",
+        {
+            title: title,
+            tagDict: tagDict,
+            articleRecentPost:articleRecentPost
+        });
+});
+
+app.get("/archive/:tag",function (req,res) {
+    let TAG = req.params.tag;
+    let count = 0;
+    article.map(function (e) {
+        count++;
+        e.tag.map (function (tag) {
+            if(tag === TAG) {
+                res.render("pageArchive", {
+                    title: e.title,
+                    cat: e,
+                    tagDict: tagDict,
+                    article:articleRecentPost
+                });
+                count = 0;
+            }
+        })
+    })
+    if(count >= article.length){
+        res.send("Not found")
+    }
+})
+
 
 function compareValues(key, order = "ascending") {
     return function innerSort(a, b) {
@@ -104,12 +148,23 @@ function compareValues(key, order = "ascending") {
 }
 
 function slide(ary,num) {
-    // ary = ary.reverse()
-    return ary.slice(ary.length-num,ary.length).sort(compareValues("date","descending"))
+    return ary.sort(compareValues("date","descending")).slice(0,num)
 }
 
+function sort_object(obj) {
+    items = []
+    obj.forEach(function(value, key, map) {
+        items.push([key, value]);
+    });
+    items.sort(function(first, second) {
+        return second[1] - first[1];
+    });
 
-
-function tag(ary) {
-
+    sorted_obj= new Map()
+    items.forEach(function(v) {
+        use_key = v[0]
+        use_value = v[1]
+        sorted_obj.set(use_key, use_value)
+    })
+    return(sorted_obj)
 }
