@@ -1,21 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> <%= title %> </title>
-    <%- include('headerBasicCss.ejs'); %>
-    <%- include('headerFontsAwsome.ejs'); %>
-    <%- include('headerGoogleFont.ejs'); %>
-    <link rel="stylesheet"  href="/css/pageBookanapp.css">
-</head>
-<body>
-<%- include('bodyHeaderFooter/bodyHeader.ejs'); %>
-<%- include('bodyHeaderFooter/bodyHeaderUnder.ejs'); %>
-<div class="secttion slide4">
-    <div class="containerner">
+<div class="section slide4">
+    <div class="container">
         <div class="slide3_head">
-            <h2 style="margin-top: -30px;">Book Now</h2>
-            <p>Let's see us</p>
+            <h2>Our Work</h2>
+            <p>To develop this website, we have been used HTML5/CSS3 and JavaScript, with positive supporting of Bootstrap framework, jQuery library and Nodejs platform</p>
+        </div>
+        <div class="item_img">
+            <img src="imgs/home/html5Thumbnail.png"/>
+            <div class="flex">
+                <a href="#"><p>HTML</p></a>
+            </div>
+        </div>
+        <div class="item_img">
+            <img src="imgs/home/css3Thumbnail.png"/>
+            <div class="flex">
+                <a href="#"><p>CSS</p></a>
+            </div>
+        </div>
+        <div class="item_img">
+            <img src="imgs/home/jsThumbnail.png"/>
+            <div class="flex">
+                <a href="#"><p>JavaScript</p></a>
+            </div>
+        </div>
+        <div class="slide3_head">
+            <h2 style="padding-top: 500px;">Book Now</h2>
+            <p><i>(This function has not been completed due to lack of database knowledge and skills. This is just an interface.)</i></p>
         </div>
         <div class="input">
             <h2>Book an appointment</h2>
@@ -81,7 +90,7 @@
                         <input type='checkbox'>
                         <span></span>
                         PAWdicure
-                        <p id="a">5$</p>
+                        <p id="gia">5$</p>
                     </label>
                     <div class="hr1">
                         <hr/>
@@ -99,7 +108,7 @@
                         <input type='checkbox'>
                         <span></span>
                         Bath & Brush
-                        <p id="b" style="margin-left: 270px!important;">20$</p>
+                        <p id="gia">20$</p>
                     </label>
                     <div class="hr1">
                         <hr/>
@@ -187,116 +196,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-
-    function an(i) {
-        var p = $("#gia").text();
-        $(".h3_right").text(p);
-    }
-    function an1(i) {
-        $(".h3_right").text("0$");
-    }
-
-    var myVar;
-    function loading(i) {
-        $("#loader").css({
-            "display":"block",
-        });
-        myVar=setTimeout(function () {
-            $("#loader").css({
-                "display":"none",
-            });
-            $(".input1").css({
-                "display":"block",
-            })
-        }, 3000)
-    }
-    var myVar;
-    function loading1(i) {
-        $("#loader").css({
-            "display":"block",
-        });
-        myVar=setTimeout(function () {
-            $("#loader").css({
-                "display":"none",
-            });
-            $(".input1 span").css({
-                "display": "none",
-            });
-            $(".input1 small").css({
-                "display": "none",
-            });
-            $(".input2").css({
-                "display":"block",
-            })
-        }, 3000)
-    }
-    var myVar;
-    function loading2(i) {
-        $("#loader").css({
-            "display": "block",
-        });
-        myVar = setTimeout(function () {
-            $("#loader").css({
-                "display": "none",
-            });
-            $(".input1 span").css({
-                "display": "none",
-            });
-            $(".input2 span").css({
-                "display": "none",
-            });
-            $(".input3").css({
-                "display": "block",
-            })
-        }, 3000)
-    }
-    function loadingback(i) {
-        $("#loader").css({
-            "display":"block",
-        });
-        myVar=setTimeout(function () {
-            $("#loader").css({
-                "display":"none",
-            });
-            $(".input1").css({
-                "display":"none",
-            })
-        }, 3000)
-    }
-    function loadingback1(i) {
-        $("#loader").css({
-            "display":"block",
-        });
-        myVar=setTimeout(function () {
-            $("#loader").css({
-                "display":"none",
-            });
-            $(".input1 span").css({
-                "display": "block",
-            });
-            $(".input2").css({
-                "display":"none",
-            })
-        }, 3000)
-    }
-    function loadingback2(i) {
-        $("#loader").css({
-            "display":"block",
-        });
-        myVar=setTimeout(function () {
-            $("#loader").css({
-                "display":"none",
-            });
-            $(".input2 span").css({
-                "display": "block",
-            });
-            $(".input3").css({
-                "display":"none",
-            })
-        }, 3000)
-    }
-</script>
-<%- include('bodyHeaderFooter/bodyFooter.ejs'); %>
-</body>
-</html>
