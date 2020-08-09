@@ -6,10 +6,36 @@
     <%- include('header/headerBasicCss.ejs'); %>
     <%- include('header/headerFontsAwsome.ejs'); %>
     <%- include('header/headerGoogleFont.ejs'); %>
+    <link rel="stylesheet" href="/css/article.css">
 </head>
 <body>
 <%- include('bodyHeaderFooter/bodyHeader.ejs'); %>
 <%- include('bodyHeaderFooter/bodyHeaderUnder.ejs'); %>
+    <div class="container articleContainer">
+        <div class="row">
+            <div class="articleArea">
+                <% currentArticle.map(function (e) { %>
+                    <div class="article">
+                        <div class="articleThumb">
+                            <img src="<%= e.thumbnail%>">
+                        </div>
+                        <div class="articleShortContent">
+                            <span id="articleTitle"><%= e.title%></span>
+                            <div class="articleInfo">
+                                <a href="/archive/<%= e.date%>"><i class="far fa-calendar-alt icon"></i><span class="date"><%= e.date%></span></a>
+                                <i class="fas fa-tag icon"></i>
+                                <% e.tag.map(function(x) { %>
+                                    <a href="/archive/<%= x%>"><span class="tag"><%= x + ", " %></span></a>
+                                <% }) %>
+                            </div>
+                            <div class="shortContent"><%= e.content%></div>
+                            </a>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
 <%- include('bodyHeaderFooter/bodyFooter.ejs'); %>
 </body>
 </html>

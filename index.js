@@ -10,7 +10,6 @@ const fs = require("fs");
 var article = fs.readFileSync("data/data-article.json","UTF-8");
 article = JSON.parse(article);
 articleRecentPost = slide(article,3);
-
 var tagDict = new Map();
 article.map(function (a) {
     a.tag.map(function (tag) {
@@ -79,15 +78,18 @@ app.get("/blog",function (req,res) {
 
 app.get("/blog/:id",function (req,res) {
     let ID = req.params.id;
+    var currentArticle = article.filter(obj => {
+        return obj.id == ID
+    })
     let count = 0;
     article.map(function (e) {
         count++;
         if(e.id == ID) {
             res.render("pageArticle", {
                 title: e.title,
-                cat: e,
                 tagDict: tagDict,
-                article:articleRecentPost
+                article:articleRecentPost,
+                currentArticle: currentArticle
             });
             count = 0;
         }
@@ -97,18 +99,19 @@ app.get("/blog/:id",function (req,res) {
     }
 });
 
-app.get("/archive",function (req,res) {
-    let title = "Archive";
-    res.render("pageArchive",
-        {
-            title: title,
-            tagDict: tagDict,
-            articleRecentPost:articleRecentPost
-        });
-});
 
 app.get("/archive/:tag",function (req,res) {
     let TAG = req.params.tag;
+
+    var currentArticle = article.filter(obj => {
+        for(var i=0;i<obj.tag.length;i++){
+            if(obj.tag[i]==TAG){
+                return obj.tag[i]== TAG
+            }
+        }
+    })
+    var num= tagDict.get(TAG)
+
     let count = 0;
     article.map(function (e) {
         count++;
@@ -117,7 +120,9 @@ app.get("/archive/:tag",function (req,res) {
                 res.render("pageArchive", {
                     title:" tag #" +tag,
                     tagDict: tagDict,
-                    article:articleRecentPost
+                    article:articleRecentPost,
+                    currentArticle: currentArticle,
+                    num: num
                 });
                 count = 0;
             }
