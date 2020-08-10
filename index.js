@@ -10,6 +10,7 @@ const fs = require("fs");
 var article = fs.readFileSync("data/data-article.json","UTF-8");
 article = JSON.parse(article);
 articleRecentPost = slide(article,3);
+
 var tagDict = new Map();
 article.map(function (a) {
     a.tag.map(function (tag) {
@@ -99,7 +100,6 @@ app.get("/blog/:id",function (req,res) {
     }
 });
 
-
 app.get("/archive/:tag",function (req,res) {
     let TAG = req.params.tag;
 
@@ -133,6 +133,31 @@ app.get("/archive/:tag",function (req,res) {
     }
 });
 
+app.get("/archive/:time",function (req,res) {
+    let TIME = req.params.time;
+    var currentArticle = article.filter(obj => {
+        return obj.time == TIME
+    })
+    console.log("currentArticle", currentArticle);
+
+    let count = 0;
+    currentArticle.map(function (e) {
+        count++;
+        if(e.time == TIME) {
+            res.render("pageArchive", {
+                title: e.title,
+                tagDict: tagDict,
+                article:articleRecentPost,
+                currentArticle: currentArticle
+            });
+            count = 0;
+        }
+    })
+    if(count >= currentArticle.length){
+        res.send("Not found")
+    }
+})
+
 function compareValues(key, order = "ascending") {
     return function innerSort(a, b) {
         const obj_to_compare_A = a[key];
@@ -151,7 +176,7 @@ function compareValues(key, order = "ascending") {
 }
 
 function slide(ary,num) {
-    return ary.sort(compareValues("date","descending")).slice(0,num)
+    return ary.sort(compareValues("time","descending")).slice(0,num)
 }
 
 function sort_object(obj) {

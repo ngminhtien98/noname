@@ -24,7 +24,7 @@
                     <div class="articleShortContent">
                         <a href="/blog/<%= e.id%>"><i class="far fa-bookmark bookmark icon"></i><span class="articleTitle"><%= e.title %></span></a>
                         <div class="articleInfo">
-                            <a href="/archive/<%= e.date %>"><i class="far fa-calendar-alt icon"></i><span class="date"><%= e.date %></span></a>
+                            <a href="/archive/<%= e.time %>"><i class="far fa-calendar-alt icon"></i><span class="time"><%= e.time %></span></a>
                             <i class="fas fa-tag icon"></i>
                             <% e.tag.map(function(x) { %>
                                 <a href="/archive/<%= x%>"><span class="tag"><%= x + ", " %></span></a>

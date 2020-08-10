@@ -75,7 +75,7 @@ hr {
     text-transform: capitalize;
 }
 
-.articleTitle:hover, .date:hover, .tag:hover {
+.articleTitle:hover, .time:hover, .tag:hover {
     color: rgb(255,214,0);
     transition: all 400ms;
 }
@@ -88,8 +88,8 @@ hr {
     color: rgb(165, 165, 165);
 }
 
-.date{
-    margin-right: 25px
+.time {
+    margin-right: 35px
 }
 
 .tag {
