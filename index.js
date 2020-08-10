@@ -139,7 +139,7 @@ app.get("/time/:time",function (req,res) {
         return obj.time == TIME
     })
     let count = 0;
-    var num= 2
+    var num = currentArticle.length
     article.map(function (e) {
         count++;
         if(e.time == TIME) {
@@ -148,7 +148,8 @@ app.get("/time/:time",function (req,res) {
                 tagDict: tagDict,
                 article:articleRecentPost,
                 currentArticle: currentArticle,
-                time:TIME
+                time:TIME,
+                num:num
             });
             count = 0;
         }
