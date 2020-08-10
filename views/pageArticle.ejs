@@ -22,10 +22,10 @@
                         <div class="articleShortContent">
                             <span id="articleTitle"><%= e.title%></span>
                             <div class="articleInfo">
-                                <a href="/archive/<%= e.time%>"><i class="far fa-calendar-alt icon"></i><span class="time"><%= e.time%></span></a>
+                                <a href="/time/<%= e.time%>"><i class="far fa-calendar-alt icon"></i><span class="time"><%= e.time%></span></a>
                                 <i class="fas fa-tag icon"></i>
                                 <% e.tag.map(function(x) { %>
-                                    <a href="/archive/<%= x%>"><span class="tag"><%= x + ", " %></span></a>
+                                    <a href="/tag/<%= x%>"><span class="tag"><%= x + ", " %></span></a>
                                 <% }) %>
                             </div>
                             <div class="shortContent"><%= e.content%></div>
@@ -37,5 +37,11 @@
         </div>
     </div>
 <%- include('bodyHeaderFooter/bodyFooter.ejs'); %>
+<script type="text/javascript">
+    <% currentArticle.map(function (e) {
+        %> console.log(<%= e.id %>)
+    <%
+    }) %>
+</script>
 </body>
 </html>

@@ -79,6 +79,7 @@ app.get("/blog",function (req,res) {
 
 app.get("/blog/:id",function (req,res) {
     let ID = req.params.id;
+
     var currentArticle = article.filter(obj => {
         return obj.id == ID
     })
@@ -100,9 +101,8 @@ app.get("/blog/:id",function (req,res) {
     }
 });
 
-app.get("/archive/:tag",function (req,res) {
+app.get("/tag/:tag",function (req,res) {
     let TAG = req.params.tag;
-
     var currentArticle = article.filter(obj => {
         for(var i=0;i<obj.tag.length;i++){
             if(obj.tag[i]==TAG){
@@ -117,7 +117,7 @@ app.get("/archive/:tag",function (req,res) {
         count++;
         e.tag.map (function (tag) {
             if(tag === TAG) {
-                res.render("pageArchive", {
+                res.render("pageTag", {
                     title:" tag #" +tag,
                     tagDict: tagDict,
                     article:articleRecentPost,
@@ -133,27 +133,27 @@ app.get("/archive/:tag",function (req,res) {
     }
 });
 
-app.get("/archive/:time",function (req,res) {
+app.get("/time/:time",function (req,res) {
     let TIME = req.params.time;
     var currentArticle = article.filter(obj => {
         return obj.time == TIME
     })
-    console.log("currentArticle", currentArticle);
-
     let count = 0;
-    currentArticle.map(function (e) {
+    var num= 2
+    article.map(function (e) {
         count++;
         if(e.time == TIME) {
-            res.render("pageArchive", {
+            res.render("pageTime", {
                 title: e.title,
                 tagDict: tagDict,
                 article:articleRecentPost,
-                currentArticle: currentArticle
+                currentArticle: currentArticle,
+                time:TIME
             });
             count = 0;
         }
     })
-    if(count >= currentArticle.length){
+    if(count >= article.length){
         res.send("Not found")
     }
 })

@@ -46,7 +46,7 @@
                 <div class="siderba3_content">
                     <img src="<%= e.thumbnail %>">
                     <a href="/blog/<%= e.id %>"><%= e.title %></a><br/>
-                    <span><%= e.time %></span>
+                    <a href="/time/<%=e.time%>"><span><%= e.time %></span></a>
                     <div class="flex">
                         <a href="/blog/<%= e.id %>"><i class="fas fa-plus"></i></a>
                     </div>
@@ -57,7 +57,7 @@
             <h2>Tags (<%= tagDict.size %>) </h2>
             <% tagDict.forEach(function (value, key, map) { %>
                 <div class="siderba4_box">
-                    <a href="/archive/<%=key%>"><button><%= key + " (" + value + ")" %></button></a>
+                    <a href="/tag/<%=key%>"><button><%= key + " (" + value + ")" %></button></a>
                 </div>
             <% }) %>
         </div>
