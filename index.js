@@ -9,9 +9,9 @@ app.listen(PORT, function () {
 const fs = require("fs");
 var article = fs.readFileSync("data/data-article.json","UTF-8");
 article = JSON.parse(article);
-articleRecentPost = slide(article,3);
+articleRecentPost = slide(article,3);  //The variable articleRecentPost is used to display the newest recent post (amount: 3) in the footer
 
-var tagDict = new Map();
+var tagDict = new Map(); //Because of property "tag" in data.json is an array, so I use new Map() function to get all the element of "tag" into map tagDict.
 article.map(function (a) {
     a.tag.map(function (tag) {
         if(tagDict.has(tag)){
@@ -22,7 +22,7 @@ article.map(function (a) {
 
     })
 })
-tagDict = sort_object(tagDict);
+tagDict = sort_object(tagDict); //After have tagDict, I sort themselves to merge common tag into one and raise the index (ex: Cat: 4, Dog: 4, Pug: 1) using function sort_obj initialized bellow
 
 app.get("/",function (req,res) {
     let title = "Home";
@@ -196,4 +196,4 @@ function sort_object(obj) {
         sorted_obj.set(use_key, use_value)
     })
     return(sorted_obj)
-}
+} //In this function, I have "obj" (input) is a dictionary (new Map()), I initialized an array named items to push all elements of input obj and sort them, then I extract the array back to sorted_obj(output)
