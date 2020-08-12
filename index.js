@@ -8,8 +8,6 @@ app.listen(PORT, function () {
 });
 const fs = require("fs");
 
-
-
 app.get("/",function (req,res) {
     var article = fs.readFileSync("data/data-article.json","UTF-8");
     article = JSON.parse(article);
@@ -97,7 +95,6 @@ app.get("/shopping",function (req,res) {
             articleRecentPost:articleRecentPost
         });
 });
-
 
 app.get("/contact",function (req,res) {
     var article = fs.readFileSync("data/data-article.json","UTF-8");
