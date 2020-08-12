@@ -10,7 +10,6 @@ const fs = require("fs");
 var article = fs.readFileSync("data/data-article.json","UTF-8");
 article = JSON.parse(article);
 articleRecentPost = slide(article,3);  //The variable articleRecentPost is used to display the newest recent post (amount: 3) in the footer
-
 var tagDict = new Map(); //Because of property "tag" in data.json is an array, so I use new Map() function to get all the element of "tag" into map tagDict.
 article.map(function (a) {
     a.tag.map(function (tag) {
@@ -23,6 +22,8 @@ article.map(function (a) {
     })
 })
 tagDict = sort_object(tagDict); //After have tagDict, I sort themselves to merge common tag into one and raise the index (ex: Cat: 4, Dog: 4, Pug: 1) using function sort_obj initialized bellow
+
+
 
 app.get("/",function (req,res) {
     let title = "Home";
@@ -47,13 +48,23 @@ app.get("/booking",function (req,res) {
 
 app.get("/shopping",function (req,res) {
     let title = "Shopping";
+
+    let leftContent = fs.readFileSync("data/data-shop-1.json", "UTF8");
+    leftContent= JSON.parse(leftContent);
+    let rightContent = fs.readFileSync("data/data-shop-2.json", "UTF8");
+    rightContent= JSON.parse(rightContent);
+
     res.render("pageShop",
         {
+            leftContent : leftContent,
+            rightContent: rightContent,
+
             title: title,
             tagDict: tagDict,
             articleRecentPost:articleRecentPost
         });
 });
+
 
 app.get("/contact",function (req,res) {
     let title = "Contact Us";
