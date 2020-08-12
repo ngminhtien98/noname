@@ -36,12 +36,8 @@
             </div>
         </div>
     </div>
+<%- include('buttonToTop.ejs'); %>
 <%- include('bodyHeaderFooter/bodyFooter.ejs'); %>
-<script type="text/javascript">
-    <% currentArticle.map(function (e) {
-        %> console.log(<%= e.id %>)
-    <%
-    }) %>
-</script>
+
 </body>
 </html>
