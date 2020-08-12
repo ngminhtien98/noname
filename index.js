@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 2000;
 app.use(express.static("public"));
 app.set("view engine","ejs");
 app.listen(PORT, function () {
-    console.log("Server is running...");
+    console.log("Server is running on PORT localhost:"+PORT+" ...");
 });
 const fs = require("fs");
 
@@ -20,7 +20,6 @@ app.get("/",function (req,res) {
             } else {
                 tagDict.set(tag, 1);
             }
-
         })
     })
     tagDict = sort_object(tagDict); //After have tagDict, I sort themselves to merge common tag into one and raise the index (ex: Cat: 4, Dog: 4, Pug: 1) using function sort_obj initialized bellow
@@ -223,7 +222,7 @@ app.get("/tag/:tag",function (req,res) {
         e.tag.map (function (tag) {
             if(tag === TAG) {
                 res.render("pageTag", {
-                    title:" tag #" +tag,
+                    title:" All Blog Posts Of Tag #" +tag +" ("+num+")",
                     tagDict: tagDict,
                     article:articleRecentPost,
                     currentArticle: currentArticle,
@@ -259,13 +258,15 @@ app.get("/time/:time",function (req,res) {
     var currentArticle = article.filter(obj => {
         return obj.time == TIME
     })
+
+
     let count = 0;
     var num = currentArticle.length
     article.map(function (e) {
         count++;
         if(e.time == TIME) {
             res.render("pageTime", {
-                title: e.title,
+                title: "All Blog Posts Of "+TIME+" ("+num+")",
                 tagDict: tagDict,
                 article:articleRecentPost,
                 currentArticle: currentArticle,
